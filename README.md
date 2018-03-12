@@ -1,2 +1,2 @@
 # pindery-backend
-Backend for pindery app, developed with Django
+Backend for (pindery)[https://github.com/AEEooTo/pindery] app, developed with Firebase.
