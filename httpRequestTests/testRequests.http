@@ -1,0 +1,7 @@
+### Basic GET test request
+GET {{host}}/AEEoTo
+
+### DB test function
+PUT {{host}}/addMessage?text='The function works!'
+
+###
