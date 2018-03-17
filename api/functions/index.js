@@ -39,25 +39,46 @@ exports.makeUppercase = functions.database.ref('/messages/{pushId}/original').on
 });
 
 exports.helloName = functions.https.onRequest((request, response) => {
-    if (request.method !== 'POST' || request.body.name === undefined) {
+    if (request.method !== 'GET' || request.params.name === undefined) {
         response.status(400).send('Bad request!');
     } else {
-        response.send('Hello, ' + request.body.name + '!');
+        response.send('Hello, ' + request.params.name + '! This is our API!');
     }
 });
 
 exports.calculator = functions.https.onRequest((request, response) => {
-    if (request.method !== 'POST' || !checkSumJson(request.body.firstNumber, request.body.secondNumber, request.body.operator)) {
+    if (request.method !== 'POST' || !checkInput(request.body.firstNumber, request.body.secondNumber, request.body.operator)) {
         response.status(400).send('Bad request!');
     } else {
-        let result = request.body.firstNumber + request.body.secondNumber;
+        let result = computation(request.body.firstNumber, request.body.secondNumber, request.body.operator);
         response.send(JSON.stringify({"result": result}));
     }
 });
 
-function checkSumJson(firstNumber, secondNumber, operator) {
-    if (typeof firstNumber !== 'number' || typeof secondNumber !== 'number' || operator !== '+') {
+function checkInput(firstNumber, secondNumber, operator) {
+    if (typeof firstNumber !== 'number' || typeof secondNumber !== 'number' || !operatorCheck(operator)) {
         return 0;
     }
     return 1;
+}
+
+function operatorCheck(operator) {
+    if (operator !== "+" && operator !== "*" && operator !== "/" && operator !== "-") {
+        return 0;
+    }
+    return 1;
+}
+
+function computation(firstNumber, secondNumber, operator) {
+    switch (operator) {
+        case '-':
+            return firstNumber - secondNumber;
+        case '*':
+            return firstNumber * secondNumber;
+        case '/':
+            return firstNumber / secondNumber;
+        default:
+            return firstNumber + secondNumber;
+    }
+
 }
