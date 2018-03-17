@@ -2,6 +2,17 @@
 GET {{host}}/AEEoTo
 
 ### DB test function
-PUT {{host}}/addMessage?text='The function works!'
+PUT {{host}}/addMessage?text=The+function+works!
+
+### POST test function
+POST {{host}}/calculator
+Content-Type: application/json
+
+{
+    "firstNumber": 3,
+    "secondNumber": 5,
+    "operator": "+"
+}
+
 
 ###

@@ -37,3 +37,27 @@ exports.makeUppercase = functions.database.ref('/messages/{pushId}/original').on
     // Setting an "uppercase" sibling in the Realtime Database returns a Promise.
     return event.data.ref.parent.child('uppercase').set(uppercase);
 });
+
+exports.helloName = functions.https.onRequest((request, response) => {
+    if (request.method !== 'POST' || request.body.name === undefined) {
+        response.status(400).send('Bad request!');
+    } else {
+        response.send('Hello, ' + request.body.name + '!');
+    }
+});
+
+exports.calculator = functions.https.onRequest((request, response) => {
+    if (request.method !== 'POST' || !checkSumJson(request.body.firstNumber, request.body.secondNumber, request.body.operator)) {
+        response.status(400).send('Bad request!');
+    } else {
+        let result = request.body.firstNumber + request.body.secondNumber;
+        response.send(JSON.stringify({"result": result}));
+    }
+});
+
+function checkSumJson(firstNumber, secondNumber, operator) {
+    if (typeof firstNumber !== 'number' || typeof secondNumber !== 'number' || operator !== '+') {
+        return 0;
+    }
+    return 1;
+}
