@@ -103,3 +103,5 @@ ENV/
 \.idea/
 
 pindery-backend\.iml
+
+api/functions/node_modules/
