@@ -105,3 +105,5 @@ ENV/
 pindery-backend\.iml
 
 api/functions/node_modules/
+
+\.vscode/
