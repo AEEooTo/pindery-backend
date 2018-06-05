@@ -11,4 +11,4 @@ function capitalizeFirstLetter(string: string) {
 }
 
 
-export {capitalizeFirstLetter};
+export { capitalizeFirstLetter };
