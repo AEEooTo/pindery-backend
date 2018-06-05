@@ -1,8 +1,12 @@
+/**
+ * Functions triggered on the creation of a new party on the DB
+ */
+
 import * as functions from 'firebase-functions';
 import * as admin from 'firebase-admin';
 import { DocumentData } from '@google-cloud/firestore';
 import { DocumentBuilder } from 'firebase-functions/lib/providers/firestore';
-
+import { capitalizeFirstLetter } from '../utils';
 
 try {
     admin.initializeApp(functions.config().firebase);
@@ -10,10 +14,14 @@ try {
     console.log(e);
 };
 
-// Reference on the DB to the parties collections in different cities
+/**
+ * Reference on the DB to the parties collections in different cities
+ */
 const partiesReference: DocumentBuilder = functions.firestore.document('/cities/{city}/parties/{party}');
 
-// Function to notify users when a new party is added.
+/**
+ * Function to notify users when a new party is added.
+ */
 export const notification = partiesReference
     .onCreate(
         (snap, context) => {
@@ -21,8 +29,6 @@ export const notification = partiesReference
             const capitalizedCity: string = capitalizeFirstLetter(city);
             const newParty: DocumentData = snap.data();
             const partyName: string = newParty.name;
-            console.log(partyName + ' in ' + city);
-
             const message = {
                 notification: {
                     title: 'New party nearby!',
@@ -34,7 +40,3 @@ export const notification = partiesReference
             return admin.messaging().send(message);
         }
     )
-
-function capitalizeFirstLetter(string: string) {
-    return string.charAt(0).toUpperCase() + string.slice(1);
-}
