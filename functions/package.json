@@ -12,10 +12,8 @@
   "main": "lib/index.js",
   "dependencies": {
     "@google-cloud/firestore": "^0.14.1",
-    "camelcase": "^5.0.0",
-    "firebase-admin": "^5.12.1",
-    "firebase-functions": "^1.0.4",
-    "glob": "^7.1.2"
+    "firebase-admin": "~5.12.1",
+    "firebase-functions": "^1.0.3"
   },
   "devDependencies": {
     "tslint": "^5.8.0",
