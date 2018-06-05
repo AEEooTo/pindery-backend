@@ -10,8 +10,10 @@ try {
     console.log(e);
 };
 
+// Reference on the DB to the parties collections in different cities
 const partiesReference: DocumentBuilder = functions.firestore.document('/cities/{city}/parties/{party}');
 
+// Function to notify users when a new party is added.
 export const notification = partiesReference
     .onCreate(
         (snap, context) => {

@@ -8,6 +8,6 @@ lerna-debug.log
 service-account-credentials.json
 **/package-lock.json
 **/node_modules/
-functions/firebase-debug.log
+firebase-debug.log
 functions/**/*.js
 functions/**/*.js.map
