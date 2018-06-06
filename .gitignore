@@ -11,3 +11,4 @@ service-account-credentials.json
 firebase-debug.log
 functions/**/*.js
 functions/**/*.js.map
+doc/
