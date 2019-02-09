@@ -13,10 +13,10 @@
   "dependencies": {
     "@google-cloud/firestore": "^0.14.1",
     "firebase-admin": "~5.12.1",
-    "firebase-functions": "^1.0.3"
+    "firebase-functions": "^1.1.0"
   },
   "devDependencies": {
-    "tslint": "^5.8.0",
+    "tslint": "^5.12.1",
     "typescript": "^2.9.2"
   },
   "private": true
